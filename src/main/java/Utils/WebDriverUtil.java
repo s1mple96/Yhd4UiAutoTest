@@ -114,13 +114,14 @@ public class WebDriverUtil {
             case "firefox":
             case "Firefox":
             case "FireFox":
-                /**
+               /**
                  *     FireFox安装方式为默认安装：
                  *     FireFox版本小于48
                  *         System.setProperty("webdriver.firefox.marionette", ".\\Tools\\geckodriver.exe");
                  *     FireFox版本大于48，默认安装时可以试试，应该可以
                  *         System.setProperty("webdriver.gecko.driver", ".\\Tools\\geckodriver.exe");
-                 */
+                *         */
+
                 // FireFox安装方式为自定义安装
                 System.setProperty("webdriver.firefox.bin", "C:\\ProgramFiles\\Mozilla Firefox\\firefox.exe");
                 driver = new FirefoxDriver();
@@ -227,6 +228,15 @@ public class WebDriverUtil {
      */
     public WebElement findElementByXpath(String xpath) {
         return driver.findElement(By.xpath(xpath));
+    }
+
+    /**
+     * 获取单个元素
+     * @param css
+     * @return
+     */
+    public WebElement findElementByCss(String css) {
+        return driver.findElement(By.cssSelector(css));
     }
 
     /**
@@ -1513,6 +1523,15 @@ public class WebDriverUtil {
     }
 
     //---------------------------------------鼠标操作---------------------------------------------------------
+
+    /**
+     * 鼠标悬浮指定元素并点击
+     * @param css
+     */
+    public void moveToElementByCss(String css) {
+        Actions actions = new Actions(driver);
+        actions.moveToElement(findElementByCss(css)).perform();
+    }
 
     /**
      * 鼠标悬浮指定元素并点击

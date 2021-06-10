@@ -1,15 +1,12 @@
-package fastener;
+package tests;
 
 import Utils.WebDriverUtil;
-import org.openqa.selenium.support.ui.*;
-import org.testng.annotations.*;
-import static org.testng.Assert.*;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.By;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
-public class Demo {
+public class FastenerTest {
     WebDriverUtil driver = new WebDriverUtil();
     @BeforeClass(alwaysRun = true)
     public void setUp() throws Exception {
@@ -106,7 +103,7 @@ public class Demo {
 
         driver.findElementClick("css", ".nav > li:nth-of-type(6) > a");
         driver.switchToWindow("怡合达 |工厂自动化零部件一站式采购平台 怡合达电商平台");
-        if (driver.waitUntilPageContainText("晚上好，欢迎使用怡合达帮助中心", 3)) {
+        if (driver.waitUntilPageContainText("欢迎使用怡合达帮助中心", 3)) {
             driver.closeCurrentBrowser();
         } else {
             throw new RuntimeException("帮助中心超链接重定向错误");
@@ -116,7 +113,6 @@ public class Demo {
 
         driver.findElementClick("css", ".nav > li:nth-of-type(7)");
         driver.switchToWindow("怡合达 |工厂自动化零部件一站式采购平台 怡合达电商平台");
-        //TODO
         driver.closeCurrentBrowser();
         driver.switchToWindow("怡合达| 工厂自动化零部件一站式采购平台 紧固件");
         System.out.println("关于怡合达 √√√");
@@ -138,7 +134,7 @@ public class Demo {
     @AfterClass(alwaysRun = true)
     public void tearDown() throws Exception {
         System.out.println("测试结束");
-//        driver.closeAllBrowser();
+        driver.closeAllBrowser();
     }
 
 
